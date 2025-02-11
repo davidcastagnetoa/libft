@@ -6,7 +6,7 @@
 /*   By: dacastag <dacastag@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:47:33 by dacastag          #+#    #+#             */
-/*   Updated: 2025/01/22 02:43:49 by dacastag         ###   ########.fr       */
+/*   Updated: 2025/02/11 03:36:26 by dacastag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	*ft_memcpy(void *buffer_dest, const void *buffer_src, size_t n)
 	const unsigned char	*ptr_src;
 	size_t				i;
 
+	if (n == 0)
+		return (buffer_dest);
+	if (!buffer_dest && !buffer_src)
+		return (NULL);
 	ptr_dst = (unsigned char *)buffer_dest;
 	ptr_src = (const unsigned char *)buffer_src;
 	i = 0;

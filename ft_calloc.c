@@ -1,79 +1,70 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dacastag <dacastag@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 20:39:23 by dacastag          #+#    #+#             */
-/*   Updated: 2025/02/05 20:56:22 by dacastag         ###   ########.fr       */
+/*   Created: 2025/02/10 23:48:35 by dacastag          #+#    #+#             */
+/*   Updated: 2025/02/11 00:31:53 by dacastag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t			i;
-	unsigned char	*ptr1;
-	unsigned char	*ptr2;
+	size_t	total_size;
+	char	*ptr;
+	size_t	i;
 
+	total_size = nmemb * size;
+	ptr = (char *)malloc(total_size);
+	if (!ptr)
+		return (NULL);
 	i = 0;
-	ptr1 = (unsigned char *)s1;
-	ptr2 = (unsigned char *)s2;
-	while (i < n)
+	while (i < total_size)
 	{
-		if (ptr1[i] != ptr2[i])
-		{
-			return (ptr1[i] - ptr2[i]);
-		}
+		ptr[i] = 0;
 		i++;
 	}
-	return (0);
+	return ((void *)ptr);
 }
 /*
-#include <stdlib.h>
-#include <unistd.h>
-
-void	ft_putnbr(int n)
+int main(int argc, char *argv[])
 {
+	int     *arr;
+	size_t  n;
+	size_t  i;
 	char	c;
-
-	if (n < 0)
-	{
-		write(1, "-", 1);
-		n = -n;
-	}
-	if (n > 9)
-	{
-		ft_putnbr(n / 10);
-	}
-	c = (n % 10) + '0';
-	write(1, &c, 1);
-}
-
-int	main(int argc, char *argv [])
-{
-	const void	*s1;
-	const void	*s2;
-	size_t		n;
-	int			result;
 
 	if (argc != 2)
 	{
 		write(2, "Error: It's required 1 valid argument!\n", 39);
-		return (0);
+		return (1);
 	}
 	n = atoi(argv[1]);
 	if (n <= 0)
 	{
 		write(2, "Error: Argument must be a positive number!\n", 43);
-		return (0);
+		return (1);
 	}
-	s1 = "Hola";
-	s2 = "HolA";
-	result = ft_memcmp(s1, s2, n);
-	ft_putnbr(result);
+	arr = (int *)ft_calloc(n, sizeof(int));
+	if (!arr)
+	{
+		write(2, "Error: Memory allocation failed\n", 32);
+		return (1);
+	}
+	i = 0;
+	while (i < n)
+	{
+		c = arr[i] + '0';
+		write(1, &c, 1);
+		write(1, " ", 1);
+		i++;
+	}
+	free(arr);
 	return (0);
 }
 */

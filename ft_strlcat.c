@@ -6,7 +6,7 @@
 /*   By: dacastag <dacastag@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 22:51:25 by dacastag          #+#    #+#             */
-/*   Updated: 2025/02/05 04:57:22 by dacastag         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:57:24 by dacastag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ void	ft_putnbr(size_t n)
 {
 	char	c;
 
+	if (n < 0)
+	{
+		write(1, "-", 1);
+		n = -n;
+	}
 	if (n > 9)
 	{
 		ft_putnbr(n / 10);
